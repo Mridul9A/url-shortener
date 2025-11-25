@@ -221,7 +221,7 @@ export default function DashboardPage() {
               <table className="min-w-full text-sm">
                 <thead>
                   <tr className="text-xs uppercase tracking-wide text-slate-400 bg-slate-900 border-b border-slate-800">
-                    <th className="px-4 py-2 text-left w-[160px]">
+                    <th className="px-4 py-2 text-left w-40">
                       Short
                     </th>
                     <th className="px-4 py-2 text-left">
