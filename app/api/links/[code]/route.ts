@@ -1,24 +1,23 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { deleteLink, getLinkByCode } from "@/lib/links";
 
-type Params = { params: { code: string } };
+export async function GET(req: NextRequest, context: { params: Promise<{ code: string }> }) {
+  const { code } = await context.params; // 🔥 FIXED
 
-export async function GET(_req: Request, { params }: Params) {
-  const { code } = params;
   const link = await getLinkByCode(code);
-
-  if (!link)
+  if (!link) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
-
+  }
   return NextResponse.json({ link });
 }
 
-export async function DELETE(_req: Request, { params }: Params) {
-  const { code } = params;
+export async function DELETE(req: NextRequest, context: { params: Promise<{ code: string }> }) {
+  const { code } = await context.params; // 🔥 FIXED
 
   const ok = await deleteLink(code);
-  if (!ok)
+  if (!ok) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
 
   return new NextResponse(null, { status: 204 });
 }
