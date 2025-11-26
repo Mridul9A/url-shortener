@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { deleteLink, getLinkByCode } from "@/lib/links";
 
 export async function GET(req: NextRequest, context: { params: Promise<{ code: string }> }) {
-  const { code } = await context.params; // 🔥 FIXED
+  const { code } = await context.params; 
 
   const link = await getLinkByCode(code);
   if (!link) {
@@ -12,7 +12,7 @@ export async function GET(req: NextRequest, context: { params: Promise<{ code: s
 }
 
 export async function DELETE(req: NextRequest, context: { params: Promise<{ code: string }> }) {
-  const { code } = await context.params; // 🔥 FIXED
+  const { code } = await context.params; 
 
   const ok = await deleteLink(code);
   if (!ok) {
